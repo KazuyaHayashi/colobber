@@ -1,3 +1,6 @@
+from typing import List
+
+
 EMPTY = 0
 O_STONE = 1
 X_STONE = -1
@@ -9,7 +12,7 @@ class MoveError(Exception):
 
 
 class Position:
-    def __init__(self, x, y):
+    def __init__(self, x: int, y: int):
         self.x = x
         self.y = y
 
@@ -36,7 +39,7 @@ def init_board():
     ]
 
 
-def print_board(board):
+def print_board(board: List[List[int]]):
     print("  A B C D E F G H (X)")
     for y in range(MAX_BOARD_SIZE):
         print(y + 1, end=" ")
@@ -51,7 +54,7 @@ def print_board(board):
     print("Y")
 
 
-def is_valid_board_index(index):
+def is_valid_board_index(index: int) -> bool:
     if index < 0:
         return False
     if index >= MAX_BOARD_SIZE:
@@ -60,11 +63,11 @@ def is_valid_board_index(index):
     return True
 
 
-def get_enemy_stone(player_stone):
+def get_enemy_stone(player_stone: int) -> int:
     return player_stone * -1
 
 
-def scan_all_moves(player, board):
+def scan_all_moves(player: int, board: List[List[int]]) -> List[Move]:
     moves = []
     enemy = get_enemy_stone(player)
     for y in range(MAX_BOARD_SIZE):
@@ -104,7 +107,9 @@ def scan_all_moves(player, board):
     return moves
 
 
-def scan_moves_at(stone_from, player, board):
+def scan_moves_at(
+    stone_from: Position, player: int, board: List[List[int]]
+) -> List[Move]:
     moves = []
     enemy = get_enemy_stone(player)
     y = stone_from.y
@@ -124,7 +129,7 @@ def scan_moves_at(stone_from, player, board):
     return moves
 
 
-def has_finished(board):
+def has_finished(board: List[List[int]]) -> bool:
     O_moves = scan_all_moves(O_STONE, board)
     if len(O_moves) > 0:
         return False
@@ -136,7 +141,7 @@ def has_finished(board):
     return True
 
 
-def is_valid_move(move, player_stone, board):
+def is_valid_move(move: Move, player_stone: int, board: List[List[int]]) -> bool:
     # check board index range
     if not is_valid_board_index(move.from_position.x):
         return False
@@ -157,7 +162,7 @@ def is_valid_move(move, player_stone, board):
     return True
 
 
-def do_move(move, player_stone, board):
+def do_move(move: Move, player_stone: int, board: List[List[int]]) -> List[List[int]]:
     if not is_valid_move(move, player_stone, board):
         raise MoveError("Invalid Move")
 

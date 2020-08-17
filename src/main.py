@@ -13,7 +13,7 @@ from .human import human_player
 from . import peek
 
 
-def print_turn(player):
+def print_turn(player: int):
     if player == O_STONE:
         print("O turn")
     else:
@@ -27,10 +27,10 @@ def do_game():
         print_turn(player)
         print_board(board)
 
-        #move = human_player(player, board)
+        # move = human_player(player, board)
         move = cpu_player(player, board)
-        print(peek.count_evaled_moves)
-        peek.count_evaled_moves = 0
+        print(peek.count_evaluated_moves)
+        peek.count_evaluated_moves = 0
         do_move(move, player, board)
         player = get_enemy_stone(player)
 

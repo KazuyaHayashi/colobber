@@ -1,11 +1,15 @@
+from typing import List
 from .board import (
     Position,
+    Move,
     is_valid_board_index,
     scan_moves_at,
 )
 
 
-def is_player_stone(stone_position, player, board):
+def is_player_stone(
+    stone_position: Position, player: int, board: List[List[int]]
+) -> bool:
     if board[stone_position.y][stone_position.x] == player:
         return True
     return False
@@ -35,7 +39,7 @@ def get_Y(label: str) -> int:
             continue
 
 
-def human_player(stone, board):
+def human_player(stone: int, board: List[List[int]]) -> Move:
     while 1:
         from_x = get_X("FROM X (A to H):")
         from_y = get_Y("FROM Y (1 to 9):")

@@ -1,12 +1,15 @@
+from typing import List
 from copy import deepcopy
 from .board import Move, scan_all_moves, do_move, get_enemy_stone, has_finished
 from .evaluate import MIN_SCORE, MAX_SCORE, evaluate
 from . import peek
 
 
-def min_max_search(stone, board, depth, mine_turn=True):
+def min_max_search(
+    stone: int, board: List[List[int]], depth: int, mine_turn=True
+) -> Move:
     if depth <= 0:
-        peek.count_evaled_moves += 1
+        peek.count_evaluated_moves += 1
         return Move(score=evaluate(board))
 
     if has_finished(board):

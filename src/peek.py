@@ -1,1 +1,1 @@
-count_evaled_moves = 0
+count_evaluated_moves = 0
