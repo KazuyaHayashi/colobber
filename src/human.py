@@ -56,8 +56,8 @@ def human_player(stone: int, board: List[List[int]]) -> Move:
                 "%d: Move to %s, %d"
                 % (
                     i + 1,
-                    chr(moves[i].to_position.y + ord("A")),
-                    moves[i].to_position.x + 1,
+                    chr(moves[i].to_position.x + ord("A")),
+                    moves[i].to_position.y + 1,
                 )
             )
         selection = int(input("Choose number:")) - 1
