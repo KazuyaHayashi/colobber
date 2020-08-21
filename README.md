@@ -3,7 +3,7 @@ clobber the board game
 
 Install
 
-`pip install .`
+`$ pip install .`
 
 Run
 
