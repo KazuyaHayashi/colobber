@@ -1,4 +1,4 @@
-# colobber
+# clobber
 clobber the board game
 
 Install
