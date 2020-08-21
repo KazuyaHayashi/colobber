@@ -23,16 +23,27 @@ def print_turn(player: int):
 def do_game():
     board = init_board()
     player = O_STONE
+    player_routine = human_player
     while not has_finished(board):
         print_turn(player)
         print_board(board)
 
         # move = human_player(player, board)
-        move = cpu_player(player, board)
-        print(peek.count_evaluated_moves)
+        move = player_routine(player, board)
+        print(f"Evaluated Moves: {peek.count_evaluated_moves}")
+        print(f"ALPHA CUT: {peek.count_alpha_cut}")
+        print(f"BETA CUT: {peek.count_beta_cut}")
         peek.count_evaluated_moves = 0
+        peek.count_alpha_cut = 0
+        peek.count_beta_cut = 0
+
         do_move(move, player, board)
         player = get_enemy_stone(player)
+
+        if player_routine is human_player:
+            player_routine = cpu_player
+        else:
+            player_routine = human_player
 
     # Show result
     print_board(board)
