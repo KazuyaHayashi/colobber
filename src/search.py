@@ -210,8 +210,10 @@ def iterative_deepning_search(
                 start_time=start_time,
             )
             depth += 1
+            from_x = chr(current_move.from_position.x + ord("A"))
+            to_x = chr(current_move.to_position.x + ord("A"))
             print(
-                f"best move: Score={current_move.score}, from=({current_move.from_position.x}, {current_move.from_position.x}), to=({current_move.to_position.x}, {current_move.to_position.y})"
+                f"best move: Score={current_move.score}, from=({from_x}, {current_move.from_position.y + 1}), to=({to_x}, {current_move.to_position.y + 1})"
             )
         except TimeLimitExceededError:
             break
